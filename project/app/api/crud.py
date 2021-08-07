@@ -1,28 +1,28 @@
 # project/app/api/crud.py
 
 
-from app.models.pydantic import SummaryPayloadSchema
-from app.models.tortoise import TextSummary
+from app.models.pydantic import RecommendationloadSchema
+from app.models.tortoise import Recommendation
 
 from typing import Union
 from typing import Union, List
 
-async def post(payload: SummaryPayloadSchema) -> int:
-    summary = TextSummary(
+async def post(payload: RecommendationPayloadSchema) -> int:
+    recommendation = Recommendation(
         url=payload.url,
-        summary="dummy summary",
+        song="good song",
     )
-    await summary.save()
-    return summary.id
+    await recommendation.save()
+    return recommendation.id
 
 
 async def get(id: int) -> Union[dict, None]:
-    summary = await TextSummary.filter(id=id).first().values()
-    if summary:
-        return summary[0]
+    recommendation = await Recommendation.filter(id=id).first().values()
+    if recommendation:
+        return recommendation[0]
     return None
 
 
 async def get_all() -> List:
-    summaries = await TextSummary.all().values()
-    return summaries
+    recommendation = await Recommendation.all().values()
+    return recommendation

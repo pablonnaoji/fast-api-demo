@@ -4,9 +4,8 @@
 from pydantic import BaseModel
 
 
-class SummaryPayloadSchema(BaseModel):
+class RecommendationPayloadSchema(BaseModel):
     url: str
 
-
-class SummaryResponseSchema(SummaryPayloadSchema):
+class RecommendtionResponseSchema(RecommendationPayloadSchema):
     id: int
